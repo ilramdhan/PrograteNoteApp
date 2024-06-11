@@ -28,8 +28,8 @@ const App = () => {
   const [noteList, setNoteList] = useState([
     {
       id: 1,
-      title: 'Note pertama',
-      desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
+      title: 'Example Note',
+      desc: 'Below is an example of a note that you can create. You can write short or long notes. For long notes, the "Read More" feature will be activated.',
     },
   ]);
   const [noteToEdit, setNoteToEdit] = useState(null);

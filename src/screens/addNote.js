@@ -9,20 +9,20 @@ const AddNote = ({ setCurrentPage, addNote }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.pageTitle}>Tambahkan Note</Text>
+      <Text style={styles.pageTitle}>Add New Note</Text>
       <CustomTextInput
         text={title}
         onChange={setTitle}
-        label="Judul"
-        placeholder="Judul"
+        label="Title"
+        placeholder="Title"
         numberOfLines={2}
         multiline={false}
       />
       <CustomTextInput
         text={desc}
         onChange={setDesc}
-        label="Deskripsi"
-        placeholder="Deskripsi"
+        label="Description"
+        placeholder="Description"
         multiline
         numberOfLines={6}
       />
@@ -30,7 +30,7 @@ const AddNote = ({ setCurrentPage, addNote }) => {
         <CustomButton
           backgroundColor="#247881"
           color="#fff"
-          text="Simpan"
+          text="Save Note"
           width="100%"
           onPress={() => {
             addNote(title, desc);
@@ -42,7 +42,7 @@ const AddNote = ({ setCurrentPage, addNote }) => {
         <CustomButton
           backgroundColor="#DDDDDD"
           color="#203239"
-          text="Kembali ke Home"
+          text="Cancel "
           width="100%"
           onPress={() => setCurrentPage('home')}
         />
