@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
-import CustomButton from '../components/customButton'
-import CustomTextInput from '../components/customTextInput'
+import React, { useState } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
+import CustomButton from '../components/customButton';
+import CustomTextInput from '../components/customTextInput';
 
-const AddNote = ({ setCurrentPage, addNote  }) => {
-  const [title, setTitle] = useState('')
-  const [desc, setDesc] = useState('')
+const AddNote = ({ setCurrentPage, addNote }) => {
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
 
   return (
     <View style={styles.container}>
@@ -15,8 +15,8 @@ const AddNote = ({ setCurrentPage, addNote  }) => {
         onChange={setTitle}
         label="Judul"
         placeholder="Judul"
-        numberOfLines={1}
-        multiline={false}
+        numberOfLines={2}
+        multiline={true}
       />
       <CustomTextInput
         text={desc}
@@ -33,9 +33,9 @@ const AddNote = ({ setCurrentPage, addNote  }) => {
           text="Simpan"
           width="100%"
           onPress={() => {
-                      addNote(title, desc)
-                      setCurrentPage('home')
-                    }}
+            addNote(title, desc);
+            setCurrentPage('home');
+          }}
         />
       </View>
       <View style={styles.spacerTop}>
@@ -48,28 +48,25 @@ const AddNote = ({ setCurrentPage, addNote  }) => {
         />
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flex: 1,
     padding: 20,
+    backgroundColor: '#f0f4f7',
   },
   pageTitle: {
-    marginTop: 20,
-    fontSize: 20,
-    fontWeight: '700',
+    fontSize: 24,
+    fontWeight: 'bold',
     textAlign: 'center',
     color: '#203239',
+    marginBottom: 20,
   },
   spacerTop: {
-    marginTop: 30,
+    marginTop: 20,
   },
-})
+});
 
-export default AddNote
-
-// Add Done
+export default AddNote;

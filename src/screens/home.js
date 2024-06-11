@@ -5,7 +5,7 @@ import CustomButton from '../components/customButton';
 const NoteCard = ({ item, setCurrentPage, setNoteToEdit, deleteNote }) => (
   <View style={styles.card}>
     <Text style={styles.cardTitle}>{item.title}</Text>
-    <Text>{item.desc}</Text>
+    <Text style={styles.cardDesc}>{item.desc}</Text>
     <View style={styles.buttons}>
       <CustomButton
         backgroundColor="#FFC300"
@@ -35,8 +35,8 @@ const NoteCard = ({ item, setCurrentPage, setNoteToEdit, deleteNote }) => (
 const Home = ({ noteList, setCurrentPage, setNoteToEdit, deleteNote }) => (
   <View style={styles.container}>
     <CustomButton
-      backgroundColor="#DDD"
-      color="#203239"
+      backgroundColor="#247881"
+      color="#fff"
       text="Tambahkan Note"
       width="100%"
       onPress={() => {
@@ -56,29 +56,35 @@ const Home = ({ noteList, setCurrentPage, setNoteToEdit, deleteNote }) => (
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flex: 1,
     padding: 20,
+    backgroundColor: '#f0f4f7',
   },
   card: {
-    padding: 10,
-    marginVertical: 15,
-    borderColor: '#DDD',
-    borderWidth: 2,
-    borderRadius: 5,
+    padding: 15,
+    marginVertical: 10,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
   },
   cardTitle: {
-    fontWeight: '600',
+    fontSize: 18,
+    fontWeight: 'bold',
     color: '#203239',
-    fontSize: 16,
     marginBottom: 5,
+  },
+  cardDesc: {
+    fontSize: 14,
+    color: '#6c757d',
   },
   buttons: {
     marginTop: 10,
-    display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
   },
 });
 

@@ -4,8 +4,8 @@ import CustomButton from '../components/customButton';
 import CustomTextInput from '../components/customTextInput';
 
 const EditNote = ({ setCurrentPage, editNote, noteToEdit }) => {
-  const [title, setTitle] = useState(noteToEdit?.title || '');
-  const [desc, setDesc] = useState(noteToEdit?.desc || '');
+  const [title, setTitle] = useState(noteToEdit ? noteToEdit.title : '');
+  const [desc, setDesc] = useState(noteToEdit ? noteToEdit.desc : '');
 
   useEffect(() => {
     if (noteToEdit) {
@@ -22,8 +22,8 @@ const EditNote = ({ setCurrentPage, editNote, noteToEdit }) => {
         onChange={setTitle}
         label="Judul"
         placeholder="Judul"
-        numberOfLines={1}
-        multiline={false}
+        numberOfLines={2}
+        multiline={true}
       />
       <CustomTextInput
         text={desc}
@@ -37,7 +37,7 @@ const EditNote = ({ setCurrentPage, editNote, noteToEdit }) => {
         <CustomButton
           backgroundColor="#247881"
           color="#fff"
-          text="Simpan"
+          text="Simpan Perubahan"
           width="100%"
           onPress={() => {
             editNote(noteToEdit.id, title, desc);
@@ -59,20 +59,19 @@ const EditNote = ({ setCurrentPage, editNote, noteToEdit }) => {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flex: 1,
     padding: 20,
+    backgroundColor: '#f0f4f7',
   },
   pageTitle: {
-    marginTop: 20,
-    fontSize: 20,
-    fontWeight: '700',
+    fontSize: 24,
+    fontWeight: 'bold',
     textAlign: 'center',
     color: '#203239',
+    marginBottom: 20,
   },
   spacerTop: {
-    marginTop: 30,
+    marginTop: 20,
   },
 });
 
