@@ -7,7 +7,7 @@ const CustomButton = ({
   text,
   onPress,
   fontSize = 16,
-  width = 120,
+  width = '100%',
 }) => {
   return (
     <TouchableOpacity
@@ -22,16 +22,17 @@ const CustomButton = ({
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    padding: 10,
+    justifyContent: 'center',
+    padding: 15,
     borderRadius: 5,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
     elevation: 3,
   },
   buttonText: {
-    fontWeight: '700',
+    fontWeight: 'bold',
   },
 });
 

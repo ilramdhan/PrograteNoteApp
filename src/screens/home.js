@@ -1,11 +1,19 @@
 import React from 'react';
-import { FlatList, StyleSheet, View, Text } from 'react-native';
+import { FlatList, StyleSheet, View, Text, Alert } from 'react-native';
 import CustomButton from '../components/customButton';
+//import NoteCard from './NoteCard';
 
-const NoteCard = ({ item, setCurrentPage, setNoteToEdit, deleteNote }) => (
+const NoteCard = ({ item, setCurrentPage, deleteNote, onPressReadMore, onPressEdit }) => (
   <View style={styles.card}>
     <Text style={styles.cardTitle}>{item.title}</Text>
-    <Text style={styles.cardDesc}>{item.desc}</Text>
+    <Text style={styles.cardDesc} numberOfLines={3}>
+      {item.desc}
+    </Text>
+    {item.desc.length > 100 && (
+      <Text style={styles.readMore} onPress={() => onPressReadMore(item)}>
+        Read More
+      </Text>
+    )}
     <View style={styles.buttons}>
       <CustomButton
         backgroundColor="#FFC300"
@@ -13,10 +21,7 @@ const NoteCard = ({ item, setCurrentPage, setNoteToEdit, deleteNote }) => (
         text="Ubah"
         fontSize={12}
         width={100}
-        onPress={() => {
-          setNoteToEdit(item);
-          setCurrentPage('edit');
-        }}
+        onPress={() => onPressEdit(item)}
       />
       <CustomButton
         backgroundColor="#D82148"
@@ -24,41 +29,77 @@ const NoteCard = ({ item, setCurrentPage, setNoteToEdit, deleteNote }) => (
         text="Hapus"
         fontSize={12}
         width={100}
-        onPress={() => {
-          deleteNote(item.id);
-        }}
+        onPress={() => deleteNote(item.id)}
       />
     </View>
   </View>
 );
 
-const Home = ({ noteList, setCurrentPage, setNoteToEdit, deleteNote }) => (
-  <View style={styles.container}>
-    <CustomButton
-      backgroundColor="#247881"
-      color="#fff"
-      text="Tambahkan Note"
-      width="100%"
-      onPress={() => {
-        setCurrentPage('add');
-      }}
-    />
-    <FlatList
-      showsVerticalScrollIndicator={false}
-      data={noteList}
-      renderItem={({ item }) => (
-        <NoteCard item={item} setCurrentPage={setCurrentPage} setNoteToEdit={setNoteToEdit} deleteNote={deleteNote} />
-      )}
-      keyExtractor={(item) => item.id.toString()}
-    />
-  </View>
-);
+const Home = ({ noteList, setCurrentPage, deleteNote, setNoteToEdit }) => {
+
+  const handleDeleteNote = (noteId) => {
+      Alert.alert(
+        'Konfirmasi',
+        'Apakah Anda yakin akan menghapus note ini?',
+        [
+          {
+            text: 'Tidak',
+            style: 'cancel',
+          },
+          {
+            text: 'Ya',
+            onPress: () => deleteNote(noteId),
+          },
+        ],
+        { cancelable: true }
+      );
+    };
+
+  const handleReadMore = (item) => {
+    Alert.alert(item.title, item.desc);
+  };
+
+  const handleEdit = (item) => {
+    setNoteToEdit(item); // Mengatur noteToEdit dengan item yang dipilih
+    setCurrentPage('edit');
+  };
+
+  return (
+    <View style={styles.container}>
+      <CustomButton
+        backgroundColor="#247881"
+        color="#fff"
+        text="Tambahkan Note"
+        width="100%"
+        onPress={() => setCurrentPage('add')}
+      />
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={noteList}
+        renderItem={({ item }) => (
+          <NoteCard
+            item={item}
+            setCurrentPage={setCurrentPage}
+            deleteNote={handleDeleteNote}
+            onPressReadMore={handleReadMore}
+            onPressEdit={handleEdit} // Mengirimkan fungsi handleEdit
+          />
+        )}
+        keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={styles.list}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
     backgroundColor: '#f0f4f7',
+  },
+  list: {
+    paddingVertical: 10,
   },
   card: {
     padding: 15,
@@ -72,17 +113,23 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   cardTitle: {
-    fontSize: 18,
     fontWeight: 'bold',
     color: '#203239',
+    fontSize: 18,
     marginBottom: 5,
   },
   cardDesc: {
+    color: '#6b6b6b',
     fontSize: 14,
-    color: '#6c757d',
+    marginBottom: 5,
+  },
+  readMore: {
+    color: '#247881',
+    fontSize: 14,
+    fontWeight: '600',
+    marginBottom: 10,
   },
   buttons: {
-    marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
