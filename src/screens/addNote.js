@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import CustomButton from '../components/customButton';
 import CustomTextInput from '../components/customTextInput';
 
@@ -8,7 +8,7 @@ const AddNote = ({ setCurrentPage, addNote }) => {
   const [desc, setDesc] = useState('');
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.pageTitle}>Tambahkan Note</Text>
       <CustomTextInput
         text={title}
@@ -16,7 +16,7 @@ const AddNote = ({ setCurrentPage, addNote }) => {
         label="Judul"
         placeholder="Judul"
         numberOfLines={2}
-        multiline={true}
+        multiline={false}
       />
       <CustomTextInput
         text={desc}
@@ -24,7 +24,7 @@ const AddNote = ({ setCurrentPage, addNote }) => {
         label="Deskripsi"
         placeholder="Deskripsi"
         multiline
-        numberOfLines={4}
+        numberOfLines={6}
       />
       <View style={styles.spacerTop}>
         <CustomButton
@@ -47,13 +47,13 @@ const AddNote = ({ setCurrentPage, addNote }) => {
           onPress={() => setCurrentPage('home')}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     padding: 20,
     backgroundColor: '#f0f4f7',
   },

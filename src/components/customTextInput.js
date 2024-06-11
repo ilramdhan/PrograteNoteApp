@@ -14,10 +14,12 @@ const CustomTextInput = ({
       <TextInput
         multiline={multiline}
         numberOfLines={numberOfLines}
-        style={[styles.input, { height: numberOfLines * 20 }]}
+        style={[styles.input, { height: numberOfLines * 25 }]}
         placeholder={label}
         onChangeText={onChange}
         defaultValue={text}
+        textAlignVertical="top"
+        scrollEnabled={multiline}
       />
     </View>
   );
