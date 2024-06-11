@@ -1,5 +1,5 @@
-import React from 'react'
-import { TextInput, Text, StyleSheet, View } from 'react-native'
+import React from 'react';
+import { TextInput, Text, StyleSheet, View } from 'react-native';
 
 const CustomTextInput = ({
   text,
@@ -8,30 +8,45 @@ const CustomTextInput = ({
   multiline,
   numberOfLines,
 }) => {
-  const styles = StyleSheet.create({
-    textInputWrapper: {
-      marginTop: 20,
-    },
-    input: {
-      borderWidth: 2,
-      borderColor: '#DDD',
-      padding: 10,
-    },
-  })
-
   return (
     <View style={styles.textInputWrapper}>
-      <Text>{label}</Text>
+      {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
         multiline={multiline}
         numberOfLines={numberOfLines}
-        style={styles.input}
+        style={[styles.input, { height: numberOfLines * 25 }]}
         placeholder={label}
         onChangeText={onChange}
         defaultValue={text}
+        textAlignVertical="top"
+        scrollEnabled={multiline}
       />
     </View>
-  )
-}
+  );
+};
 
-export default CustomTextInput
+const styles = StyleSheet.create({
+  textInputWrapper: {
+    marginVertical: 10,
+  },
+  label: {
+    marginBottom: 5,
+    fontSize: 16,
+    color: '#203239',
+    fontWeight: '500',
+  },
+  input: {
+    borderWidth: 2,
+    borderColor: '#DDD',
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
+  },
+});
+
+export default CustomTextInput;
