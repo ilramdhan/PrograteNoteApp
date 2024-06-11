@@ -1,8 +1,8 @@
-import React from 'react'
-import { FlatList, StyleSheet, View, Text } from 'react-native'
-import CustomButton from '../components/customButton'
+import React from 'react';
+import { FlatList, StyleSheet, View, Text } from 'react-native';
+import CustomButton from '../components/customButton';
 
-const NoteCard = ({ item, setCurrentPage }) => (
+const NoteCard = ({ item, setCurrentPage, setNoteToEdit, deleteNote }) => (
   <View style={styles.card}>
     <Text style={styles.cardTitle}>{item.title}</Text>
     <Text>{item.desc}</Text>
@@ -14,44 +14,45 @@ const NoteCard = ({ item, setCurrentPage }) => (
         fontSize={12}
         width={100}
         onPress={() => {
-                  setCurrentPage('edit')
-                }}
-              />
-              <CustomButton
-                backgroundColor="#D82148"
-                color="#fff"
-                text="Hapus"
-                fontSize={12}
-                width={100}
-                onPress={() => {}}
-              />
-            </View>
-          </View>
-        )
+          setNoteToEdit(item);
+          setCurrentPage('edit');
+        }}
+      />
+      <CustomButton
+        backgroundColor="#D82148"
+        color="#fff"
+        text="Hapus"
+        fontSize={12}
+        width={100}
+        onPress={() => {
+          deleteNote(item.id);
+        }}
+      />
+    </View>
+  </View>
+);
 
-const Home = ({ noteList, setCurrentPage }) => (
+const Home = ({ noteList, setCurrentPage, setNoteToEdit, deleteNote }) => (
   <View style={styles.container}>
     <CustomButton
       backgroundColor="#DDD"
       color="#203239"
       text="Tambahkan Note"
       width="100%"
-      // Tuliskan layar "add" untuk ketika tombol-nya ditekan
       onPress={() => {
-        setCurrentPage('add')
+        setCurrentPage('add');
       }}
     />
     <FlatList
       showsVerticalScrollIndicator={false}
       data={noteList}
-      // Berikan function "setCurrentPage" ke component "NoteCard"
       renderItem={({ item }) => (
-        <NoteCard item={item} setCurrentPage={setCurrentPage} />
+        <NoteCard item={item} setCurrentPage={setCurrentPage} setNoteToEdit={setNoteToEdit} deleteNote={deleteNote} />
       )}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.id.toString()}
     />
   </View>
-)
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -79,6 +80,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
-})
+});
 
-export default Home
+export default Home;
