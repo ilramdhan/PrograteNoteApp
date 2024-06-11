@@ -28,8 +28,8 @@ const App = () => {
   const [noteList, setNoteList] = useState([
     {
       id: 1,
-      title: 'Contoh Catatan',
-      desc: 'Berikut adalah contoh deskripsi dari catatan yang akan anda buat, anda bisa membuat catatan panjang atau pendek, dimana untuk catatan panjang akan mengaktifkan fitur "Read More"',
+      title: 'Example Note',
+      desc: 'Below is an example of a note that you can create. You can write short or long notes. For long notes, the "Read More" feature will be activated.',
     },
   ]);
   const [noteToEdit, setNoteToEdit] = useState(null);

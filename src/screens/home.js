@@ -18,7 +18,7 @@ const NoteCard = ({ item, setCurrentPage, deleteNote, onPressReadMore, onPressEd
       <CustomButton
         backgroundColor="#FFC300"
         color="#151D3B"
-        text="Ubah"
+        text="Edit"
         fontSize={12}
         width={100}
         onPress={() => onPressEdit(item)}
@@ -26,7 +26,7 @@ const NoteCard = ({ item, setCurrentPage, deleteNote, onPressReadMore, onPressEd
       <CustomButton
         backgroundColor="#D82148"
         color="#fff"
-        text="Hapus"
+        text="Delete"
         fontSize={12}
         width={100}
         onPress={() => deleteNote(item.id)}
@@ -39,15 +39,15 @@ const Home = ({ noteList, setCurrentPage, deleteNote, setNoteToEdit }) => {
 
   const handleDeleteNote = (noteId) => {
       Alert.alert(
-        'Konfirmasi',
-        'Apakah Anda yakin akan menghapus note ini?',
+        'Confirmation',
+        'Are you sure you want to delete this note?',
         [
           {
-            text: 'Tidak',
+            text: 'No',
             style: 'cancel',
           },
           {
-            text: 'Ya',
+            text: 'Yes',
             onPress: () => deleteNote(noteId),
           },
         ],
@@ -60,7 +60,7 @@ const Home = ({ noteList, setCurrentPage, deleteNote, setNoteToEdit }) => {
   };
 
   const handleEdit = (item) => {
-    setNoteToEdit(item); // Mengatur noteToEdit dengan item yang dipilih
+    setNoteToEdit(item);
     setCurrentPage('edit');
   };
 
@@ -69,7 +69,7 @@ const Home = ({ noteList, setCurrentPage, deleteNote, setNoteToEdit }) => {
       <CustomButton
         backgroundColor="#247881"
         color="#fff"
-        text="Tambahkan Note"
+        text="Add Note"
         width="100%"
         onPress={() => setCurrentPage('add')}
       />
