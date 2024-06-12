@@ -21,11 +21,15 @@ Note App is a simple application for taking notes or memos. Users can add, edit,
 - Readmore for long description.
 - Persist notes using local storage (AsyncStorage).
 
-  ![](https://github.com/ilramdhan/PrograteNoteApp/blob/master/Add.gif)
-  ![](https://github.com/ilramdhan/PrograteNoteApp/blob/master/Edit.gif)
-  ![](https://github.com/ilramdhan/PrograteNoteApp/blob/master/Deleted.gif)
-  ![](https://github.com/ilramdhan/PrograteNoteApp/blob/master/Readmore.gif)
-  ![](https://github.com/ilramdhan/PrograteNoteApp/blob/master/LocalStorage.gif)
+<h2 align="center">
+Demo App
+</h2>
+
+<p align="center">
+<img src="https://github.com/ilramdhan/PrograteNoteApp/blob/master/Add.gif" width="270" height="555"/> <img src="https://github.com/ilramdhan/PrograteNoteApp/blob/master/Edit.gif" width="270" height="555"/>
+<img src="https://github.com/ilramdhan/PrograteNoteApp/blob/master/Deleted.gif" width="270" height="555"/> <img src="https://github.com/ilramdhan/PrograteNoteApp/blob/master/Readmore.gif" width="270" height="555"/>
+<img src="https://github.com/ilramdhan/PrograteNoteApp/blob/master/LocalStorage.gif" width="270" height="555"/>
+</p>
 
 ## Installation
 
