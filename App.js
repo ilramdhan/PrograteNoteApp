@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Home from './src/screens/home';
 import AddNote from './src/screens/addNote';
 import EditNote from './src/screens/editNote';
+
+const STORAGE_KEY = '@noteList';
 
 const CurrentPageWidget = ({ currentPage, noteList, setCurrentPage, addNote, editNote, deleteNote, setNoteToEdit, noteToEdit }) => {
   switch (currentPage) {
@@ -25,14 +28,36 @@ const CurrentPageWidget = ({ currentPage, noteList, setCurrentPage, addNote, edi
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
-  const [noteList, setNoteList] = useState([
-    {
-      id: 1,
-      title: 'Example Note',
-      desc: 'Below is an example of a note that you can create. You can write short or long notes. For long notes, the "Read More" feature will be activated.',
-    },
-  ]);
+  const [noteList, setNoteList] = useState([]);
   const [noteToEdit, setNoteToEdit] = useState(null);
+
+  useEffect(() => {
+    loadNotes();
+  }, []);
+
+  useEffect(() => {
+    saveNotes(noteList);
+  }, [noteList]);
+
+  const saveNotes = async (notes) => {
+    try {
+      const jsonValue = JSON.stringify(notes);
+      await AsyncStorage.setItem(STORAGE_KEY, jsonValue);
+    } catch (e) {
+      console.error('Failed to save notes:', e);
+    }
+  };
+
+  const loadNotes = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem(STORAGE_KEY);
+      if (jsonValue != null) {
+        setNoteList(JSON.parse(jsonValue));
+      }
+    } catch (e) {
+      console.error('Failed to load notes:', e);
+    }
+  };
 
   const addNote = (title, desc) => {
     const id = noteList.length > 0 ? noteList[noteList.length - 1].id + 1 : 1;
