@@ -18,6 +18,16 @@ Note App is a simple application for taking notes or memos. Users can add, edit,
 - View a list of created notes.
 - Edit existing notes.
 - Delete unwanted notes.
+- Readmore for long description.
+- Persist notes using local storage (AsyncStorage).
+
+<p align="center">
+  ![](https://github.com/ilramdhan/PrograteNoteApp/blob/master/Add.gif)
+  ![](https://github.com/ilramdhan/PrograteNoteApp/blob/master/Edit.gif)
+  ![](https://github.com/ilramdhan/PrograteNoteApp/blob/master/Deleted.gif)
+  ![](https://github.com/ilramdhan/PrograteNoteApp/blob/master/Readmore.gif)
+  ![](https://github.com/ilramdhan/PrograteNoteApp/blob/master/LocalStorage.gif)
+</p>
 
 ## Installation
 
@@ -53,6 +63,7 @@ Once the application is running, you will be greeted with the main screen displa
 - **View Note Details**: Tap on a note you want to view to see its details.
 - **Edit Note**: Press the "Edit" button on a note to update its title and description.
 - **Delete Note**: Tap the "Delete" button to remove a note.
+- **Persist Notes**: Notes are saved using AsyncStorage, so they remain even after the app is closed and reopened.
 
 ## Contribution
 
